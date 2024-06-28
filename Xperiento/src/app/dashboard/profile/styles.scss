@@ -1,0 +1,45 @@
+.dashboard {
+    padding: 1rem 0px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    h3 {
+        span {
+            color: var(--star-color);
+        }
+    }
+
+}
+
+.user-details {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 2rem;
+
+    .row {
+        margin-bottom: 10px;
+        display: flex;
+        gap: 3rem;
+        justify-content: space-between;
+        background-color: #ffffff29;
+        padding: .5rem 1rem;
+        border-radius: 8px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    span {
+        display: inline-block;
+    }
+
+    p {
+        color: red;
+        font-style: italic;
+    }
+}

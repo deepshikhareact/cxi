@@ -1,0 +1,146 @@
+.dialogMenu {
+    --bg: var(--main-bg);
+    --pop-up-menu-height: max-content;
+    --pop-up-menu-width: max-content;
+    --modal-gap: 1rem;
+    position: relative;
+    width: max-content;
+
+    .label {
+        display: block;
+        position: relative;
+        border: none;
+        z-index: 14;
+        height: 22px;
+        width: 37px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        p {
+            height: 3px;
+            border-radius: 10px;
+            width: 100%;
+            background-color: var(--primary-color);
+            transition: background-color .1s ease-in-out;
+
+            &:nth-of-type(3) {
+                width: 50%;
+            }
+        }
+
+        &:hover {
+            p {
+                background-color: var(--star-color);
+            }
+        }
+
+    }
+
+    .closeLayer {
+        transition: all .3s ease-in-out;
+        visibility: hidden;
+        // top: var(--header-h);
+        top: 0px;
+        right: 0px;
+        position: fixed;
+        height: 100%;
+        backdrop-filter: blur(3px);
+        transform-origin: top right;
+        width: 100%;
+        background-color: rgb(2 2 2 / 75%);
+        z-index: 12;
+        opacity: 0;
+        // border: 1px solid var(--primary-color);
+    }
+
+    .menuBox {
+        transition: all .3s ease-in-out;
+        visibility: hidden;
+        position: fixed;
+        transform-origin: right top;
+        width: var(--pop-up-menu-width);
+        height: var(--pop-up-menu-height);
+        min-width: 250px;
+        padding: 10px;
+        overflow-y: auto;
+        padding-bottom: 20px;
+        z-index: 13;
+        top: calc(65px);
+        right: 0px;
+        background-color: transparent;
+        opacity: 0;
+        scale: 0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: flex-end;
+
+        .container,
+        .lists {
+            margin-top: calc(var(--header-h) + 2rem);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 0px 2rem;
+            align-items: flex-end;
+
+            .item {
+                color: var(--primary-color);
+                text-decoration: none;
+                font-size: 1.35rem;
+                cursor: pointer;
+
+                &.button {
+                    border: none;
+                    background-color: transparent;
+                }
+
+                &:hover {
+                    color: var(--star-color);
+                }
+            }
+
+        }
+    }
+
+    &.active {
+        .label {
+            p {
+                background-color: var(--star-color);
+            }
+        }
+
+        .closeLayer {
+            scale: 1;
+            opacity: 1;
+            visibility: visible;
+            border-radius: 0%;
+            border: 1px solid transparent;
+        }
+
+        .menuBox {
+            scale: 1;
+            opacity: 1;
+            visibility: visible;
+            border-radius: 0%;
+        }
+    }
+
+    &.close {
+        .closeLayer {
+            scale: 0;
+            opacity: 0;
+            visibility: hidden;
+            border-radius: 50%;
+        }
+
+        .menuBox {
+            scale: 0;
+            opacity: 0;
+            visibility: hidden;
+            border-radius: 50%;
+        }
+    }
+
+}

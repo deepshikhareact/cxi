@@ -1,0 +1,127 @@
+.Dashboard {
+    background-color: var(--primary-color);
+    padding-bottom: 2rem;
+
+    .header {
+        padding: 2rem 0px;
+
+        .title {
+            text-align: center;
+
+            h3 {
+                font-size: var(--font-lg);
+
+                span {
+                    font-size: var(--font-md);
+                }
+            }
+        }
+
+        .flex {
+            margin-top: 2rem;
+            display: flex;
+            gap: 42px;
+            justify-content: center;
+        }
+    }
+
+    .Insights {
+        overflow-x: auto;
+        margin: 1rem 0px;
+        margin-bottom: 0px;
+        padding: 1rem;
+        display: flex;
+        gap: var(--font-xlg);
+        border-bottom: 2px solid #7F92B3;
+        border-top: 2px solid #7F92B3;
+        color: var(--primary-color);
+
+        .card {
+            // min-height: 210px;
+            cursor: pointer;
+            min-width: 210px;
+            --br: 30px;
+
+            border-radius: 30px;
+            padding: 30px;
+            display: flex;
+            gap: 4px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: var(--main-Bg);
+            position: relative;
+
+            h1,
+            h3,
+            p {
+                z-index: 3;
+            }
+
+            h1 {
+                font-size: var(--font-xxl);
+                color: var(--star-color);
+            }
+
+            h3 {
+                font-size: var(--font-xlg);
+            }
+
+            p {
+                font-size: var(--font-xmd);
+            }
+
+
+        }
+    }
+
+    .overLook {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        border-bottom: 2px solid #7F92B3;
+        padding: 2rem 0px;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 80%;
+            transform: translate(-50%, -50%);
+            width: 2px;
+            background-color: #7F92B3;
+        }
+
+
+    }
+
+    .latestInsights {
+
+        .latestInsights_title {
+            margin: 34px 0px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0px calc(var(--main-p-x) / 2);
+        }
+    }
+
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

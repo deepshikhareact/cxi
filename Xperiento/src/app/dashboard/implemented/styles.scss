@@ -1,0 +1,43 @@
+.MyInsights {
+    background-color: var(--primary-color);
+
+    .header {
+        padding: 2rem 0px;
+
+        .title {
+            text-align: center;
+
+            h3 {
+                font-size: var(--font-lg);
+
+                span {
+                    font-size: var(--font-md);
+                }
+            }
+        }
+
+        .flex {
+            margin-top: 2rem;
+            display: flex;
+            gap: 42px;
+            justify-content: center;
+        }
+    }
+
+    .latestInsights {
+        margin: 34px 0px;
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0px calc(var(--main-p-x) / 2);
+        }
+    }
+
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

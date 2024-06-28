@@ -1,0 +1,40 @@
+header.header {
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-h);
+    padding: 0px 2rem;
+    background-color: var(--main-Bg);
+    z-index:99;
+    border-bottom: 1px solid rgba(67, 67, 67, 0.515);
+
+    .logo {
+        a {
+            text-decoration: none;
+        }
+
+
+        h1 {
+            font-weight: 700;
+            line-height: 45.46px;
+            letter-spacing: 1px;
+            font-size: 32px;
+            color: var(--primary-color);
+
+            &::first-letter {
+                font-size: 36px;
+                color: var(--star-color);
+            }
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    header.header {
+        padding: 0 1rem;
+    }
+
+}

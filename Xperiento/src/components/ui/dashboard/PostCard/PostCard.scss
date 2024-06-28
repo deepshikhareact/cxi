@@ -1,0 +1,153 @@
+.PostCard {
+    background-color: var(--main-Bg);
+    color: var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 25px;
+    --br: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 300px;
+
+
+    .head {
+
+        display: flex;
+        align-items: flex-start;
+        gap: .75rem;
+
+        p {
+            font-size: var(--font-md);
+            font-weight: bold;
+        }
+
+        i {
+            font-size: 2rem;
+            color: var(--star-color);
+        }
+
+        .time {
+            margin-top: 0.25rem;
+            font-size: var(--font-xs);
+        }
+
+        &.left {
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0px 0px 1rem 0px;
+
+        .post_title {
+            font-size: var(--font-xslg);
+            font-weight: normal;
+        }
+
+        .action {
+            // styles for action section
+
+            .action_head {
+                // styles for action title section
+
+                .star {
+                    font-weight: bold;
+                    font-size: var(--font-md);
+                    color: var(--star-color);
+                }
+
+                .action_title {
+                    font-size: var(--font-xmd);
+                }
+
+            }
+
+            .example {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+
+    .Like_Dislike_footer {
+        padding: 1rem 0rem;
+        padding-bottom: 0rem;
+        border-top: 1px solid var(--hoverColor);
+        display: flex;
+        // justify-content: space-between;
+        gap: 2.5rem;
+        font-size: 1.5rem;
+
+        div {
+            height: 35px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: background-color .2s ease-in-out;
+
+            &:last-of-type {
+                margin-left: auto;
+            }
+
+            &:hover,
+            &.active {
+                color: var(--hoverColor);
+            }
+        }
+
+    }
+
+    .FeedbackStar {
+        padding: 1rem 0rem;
+        padding-bottom: 0rem;
+        border-top: 1px solid var(--hoverColor);
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.5rem;
+
+        .starsCollection {
+            cursor: pointer;
+            display: flex;
+            gap: .125rem;
+
+            .active {
+                color: var(--star-color);
+            }
+        }
+
+        .icon-container {
+            height: 35px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: background-color .2s ease-in-out;
+
+            &.active,
+            &:hover {
+                color: var(--star-color);
+            }
+        }
+    }
+
+    .Like_Dislike_footerAlternate {
+        padding: .5rem 1rem;
+        /* padding-bottom: 0rem; */
+        display: flex;
+        gap: 2.5rem;
+        font-size: 1.5rem;
+        background: var(--hoverColor);
+        border-radius: 6px;
+    }
+}

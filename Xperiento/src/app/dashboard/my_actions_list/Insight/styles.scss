@@ -1,0 +1,95 @@
+.InsightPage {
+    width: 100%;
+    padding: 2rem 0rem 0rem 0rem;
+    background-color: var(--main-Bg);
+    color: var(--primary-color);
+    min-height: 100vh;
+
+    .formAndComments {
+        padding: 0px var(--main-p-x);
+        padding-bottom: 100px;
+
+        .comments {
+            list-style: none;
+            padding: var(--main-p-y) 0px;
+
+
+            .comment {
+                position: relative;
+
+                &:not(:first-of-type) {
+                    margin-top: 1.5rem;
+                }
+
+                .time {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    font-size: var(--font-xs);
+                    color: rgb(197, 197, 197);
+                }
+
+                .name {
+                    font-size: calc(var(--font-md) - .25rem);
+                    color: rgb(197, 197, 197);
+                    font-weight: bold;
+                }
+
+                .text {
+                    margin-top: .25rem;
+                    font-size: var(--font-md);
+                }
+            }
+        }
+
+        .createCommentForm {
+            color: black;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem var(--main-p-x);
+            background-color: var(--main-Bg);
+            border-top: 1px solid var(--hoverColor);
+            box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+
+            input[type="text"] {
+                width: 100%;
+                padding: 0.5rem;
+                font-size: var(--font-md);
+                background-color: var(--hoverColor);
+                color: var(--star-color);
+                transition: border .2s ease-in-out, background-color .2s ease-in-out;
+                outline: none;
+                border: 1px solid transparent;
+                box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+
+                &:focus-within {
+                    border-bottom-color: var(--star-color);
+                    background-color: transparent
+                }
+            }
+
+
+            button[type="submit"] {
+                width: 30px;
+                height: 30px;
+                font-size: var(--font-md);
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background-color: var(--star-color);
+                cursor: pointer;
+            }
+
+            button[type="submit"]:hover {
+                background-color: var(--primary-color);
+            }
+        }
+    }
+}

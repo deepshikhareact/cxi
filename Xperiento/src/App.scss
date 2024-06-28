@@ -1,0 +1,202 @@
+.landingPage {
+    min-height: calc(100vh - var(--header-h) - 5rem);
+    padding-top: 5rem !important;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    background-color: var(--main-Bg);
+    color: var(--primary-color);
+    padding-bottom: 2rem;
+
+    &::before {
+        content: "";
+        top: 0px;
+        position: fixed;
+        left: 0px;
+        background-color: var(--main-Bg);
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .back {
+        position: absolute;
+        top: 1rem;
+        left: calc(var(--main-p-x));
+        opacity: 1;
+        font-weight: 800;
+        padding: .25rem 1rem;
+        border-radius: 5px;
+        border: none;
+        background-color: var(--star-color);
+
+        &[data-state="false"] {
+            opacity: 0;
+        }
+
+        &[data-state="true"] {
+            opacity: 1;
+        }
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 45.46px;
+        letter-spacing: 1px;
+
+        &::first-letter {
+            color: var(--star-color);
+        }
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 25.25px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0px 2rem;
+        max-width: 500px;
+        min-width: 350px;
+        opacity: 0;
+        transform-origin: center center;
+        animation: scaleUp 1.5s forwards;
+
+
+        .flex-column {
+            position: relative;
+            padding-top: 1rem;
+            display: block;
+            width: 100%;
+            text-align: start;
+
+
+            input {
+                width: 100%;
+                background-color: transparent;
+                padding: 6px 0px;
+                border: none;
+                outline: none;
+                color: #FFF;
+                font-size: 18px;
+                border-bottom: 1px solid #FFF;
+                transition: border-color .3s ease-in-out;
+
+                &:focus-within {
+                    border-color: var(--star-color);
+
+                }
+            }
+
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+
+        }
+
+        .radio-btn {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-evenly;
+            animation: scaleUp 1.5s forwards;
+
+            .box {
+                transition: all .1s ease-in-out;
+                border-radius: 50%;
+
+                svg {
+                    padding: 5px;
+                }
+
+                &:hover {
+                    background-color: rgb(167 167 167 / 9%);
+                }
+            }
+
+            .box {
+                position: relative;
+
+                #check1,
+                #check2 {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                }
+            }
+
+        }
+
+        .signUp {
+            width: 100%;
+            animation: signUps .5s forwards;
+            opacity: 0;
+        }
+
+        .forgot {
+            color: var(--star-color);
+            width: 100%;
+            font-weight: 600;
+            cursor: pointer;
+
+            p {
+                width: max-content;
+                float: inline-end;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    @keyframes signUps {
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+    @keyframes scaleUp {
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+    .link {
+        line-height: 4px;
+        color: var(--star-color);
+        border: none;
+        margin-top: 2rem;
+        background: none;
+        font-weight: 800;
+        text-decoration: underline;
+    }
+
+}
