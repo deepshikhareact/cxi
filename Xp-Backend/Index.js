@@ -9,6 +9,7 @@ const authRoute = require("./routes/auth.action");
 const extractToken = require("./utils/middleware");
 const Insight = require("./models/Insights_model");
 const User = require("./models/User_Customer");
+require("dotenv").config();
 
 const app = express();
 const port = 5055;
@@ -18,9 +19,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB connection
-const cloudUrl =
-  "mongodb+srv://deepshikhareact:user123@cluster0.ynyzkrk.mongodb.net/xperiento?retryWrites=true&w=majority&appName=Cluster0";
-const localUrl = "mongodb://localhost:27017/xperiento";
+const cloudUrl = process.env.CLOUD_URL;
+const localUrl = process.env.LOCAL_URL;
 
 const dbUrl = cloudUrl;
 
@@ -38,15 +38,15 @@ db.once("open", () => {
 });
 
 // API Routes
-app.use("/users", userRoutes);
+app.use("/users", extractToken, userRoutes);
 app.use("/insights", extractToken, insightRoutes);
 app.use("/auth", authRoute);
 
 app.get("/test", async (req, res) => {
   try {
-    let user = await Insight.find();
+    // let user = await Insight.find();
 
-    res.json({ message: "Test Api", data: user });
+    res.json({ message: "Test Api", data: "Testing Api" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message || "Server error" });

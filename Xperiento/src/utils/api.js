@@ -109,3 +109,13 @@ export const createComment = async ({ id, text }) => {
     instance.post(`insights/${id}/comments`, { text })
   );
 };
+
+export const forgotPasswordEmailSend = async ({ email }) => {
+  return handleRequest(() => instance.post(`auth/forgotpassword`, { email }));
+};
+
+export const forgotPasswordEmailVerify = async (body) => {
+  return handleRequest(() =>
+    instance.post(`auth/forgotpassword/${body.token}`, body)
+  );
+};

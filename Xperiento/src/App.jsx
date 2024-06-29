@@ -11,7 +11,8 @@ import MyAction_Insight_View from "./app/dashboard/my_actions_list/Insight/Page"
 import MyTodo_Insight_View from "./app/dashboard/implemented/Insight/Page";
 import NotFound from "./NotFound";
 import InsightForm from "./app/dashboard/create/page";
-
+import ForgotPassword from "./app/verify/ForgotPassword";
+import NewPassword from "./app/verify/newPassword";
 const App = () => {
   const { auth } = useContext(UserContext);
 
@@ -20,6 +21,8 @@ const App = () => {
       <Header auth={auth} />
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/forgot_password" element={<ForgotPassword />} />
+        <Route path="/forgot_password/:token" element={<NewPassword />} />
         {auth && (
           <>
             <Route path="/dashboard" element={<DashboardPage />} />

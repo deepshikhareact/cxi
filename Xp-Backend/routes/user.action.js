@@ -6,13 +6,13 @@ const Insight = require("../models/Insights_model");
 // Get all users
 router.get("/", async (req, res) => {
   try {
-    const users = await User.find().lean().exec();
-    res.json({ data: users, success: true });
+    // const users = await User.find().lean().exec();
+    res.json({ data: "GET ALL USERS", success: true });
   } catch (error) {
     res.status(500).json({ error: error.message, success: false });
   }
 });
-router.get("/counts", extractToken, async (req, res) => {
+router.get("/counts", async (req, res) => {
   try {
     const userId = req.user._id;
 
@@ -28,7 +28,7 @@ router.get("/counts", extractToken, async (req, res) => {
     res.status(500).json({ error: error.message || "Server error" });
   }
 });
-router.get("/myTodos", extractToken, async (req, res) => {
+router.get("/myTodos", async (req, res) => {
   try {
     const userId = req.user._id;
 
@@ -43,7 +43,7 @@ router.get("/myTodos", extractToken, async (req, res) => {
   }
 });
 
-router.get("/myImpletements", extractToken, async (req, res) => {
+router.get("/myImpletements", async (req, res) => {
   try {
     const userId = req.user._id;
 

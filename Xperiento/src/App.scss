@@ -164,7 +164,8 @@
             font-weight: 600;
             cursor: pointer;
 
-            p {
+            >* {
+                color: var(--star-color);
                 width: max-content;
                 float: inline-end;
 

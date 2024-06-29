@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { login, signUp } from "@/utils/api";
 import { toast } from "react-toastify";
 import { UserContext } from "@/store/User_Context";
+import { Link } from "react-router-dom";
 
 const AccountForm = () => {
   const { signInHandler } = useContext(UserContext);
@@ -16,8 +17,8 @@ const AccountForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      phoneNumber: "2589637410",
-      password: "App1234",
+      phoneNumber: "",
+      password: "",
     },
   });
 
@@ -215,7 +216,6 @@ const AccountForm = () => {
           <label htmlFor="password">Password</label>
           <input
             {...register("password", {
-              value: true,
               required: "Password is required",
               pattern: {
                 value: /^[A-Z][^\s]{5,}$/,
@@ -243,7 +243,7 @@ const AccountForm = () => {
         </div>
         {!isCreatingAccount && (
           <div className="forgot">
-            <p>forgot password? </p>
+            <Link to={"/forgot_password"}>forgot password? </Link>
           </div>
         )}
 
