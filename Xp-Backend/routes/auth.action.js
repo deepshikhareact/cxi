@@ -4,17 +4,20 @@ const User = require("../models/User_Customer");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 require("dotenv").config();
 
 const encodeKey = process.env.ENCODE_KEY;
 const user_mail_address = process.env.MAIL_ADDRESS;
 const user_mail_password = process.env.Mail_PASS;
-const saltRounds = 10;
+
 router.post("/login", async (req, res) => {
   const { id, password } = req.body;
   try {
-    const user = await User.findOne({ phoneNumber: id });
+    const user = await User.findOne({
+      $or: [{ phoneNumber: id }, { email: id }],
+    });
 
     if (!user) {
       return res.status(200).json({
@@ -58,7 +61,6 @@ router.post("/createAccount", async (req, res) => {
     }
 
     // Hash the password before saving the user account
-    
     const hashedPassword = await bcrypt.hash(payload.password, saltRounds);
 
     // Update the payload with the hashed password
@@ -120,7 +122,6 @@ router.post("/forgotpassword", async (req, res) => {
 
     // Send email
     let info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
 
     res.status(200).json({ data: "Email sent successfully", success: true });
   } catch (error) {
@@ -159,7 +160,6 @@ router.post("/sendCodeToEmail", async (req, res) => {
 
     // Send email
     let info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
 
     res.status(200).json({ data: "Email sent successfully", success: true });
   } catch (error) {
@@ -217,9 +217,7 @@ router.post("/forgotpassword/:token", async (req, res) => {
       return res.status(404).json({ data: "User not found", success: false });
     }
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-
     user.password = hashedPassword;
-    
     await user.save();
     res.status(200).json({
       data: "Password updated successfully, Login with new Password !!!",

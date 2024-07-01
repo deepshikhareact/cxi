@@ -7,6 +7,7 @@ import { UserContext } from "@/store/User_Context";
 import { Link } from "react-router-dom";
 import VerifyEmail_Box from "./EmailVerify";
 import { sendCodeToEmailHandler } from "@/utils/api";
+import PasswordInput from "./PasswordInput";
 
 const AccountForm = () => {
   const { signInHandler } = useContext(UserContext);
@@ -216,9 +217,18 @@ const AccountForm = () => {
           </div>
         )}
         <div className="flex-column">
-          <label htmlFor="phoneNumber">Your Mobile Number</label>
+          <label htmlFor="phoneNumber">{isCreatingAccount === true ? "Your Mobile Number" : "Email Address | Your Mobile Number"}</label>
           <input
-            {...register("phoneNumber", {
+            {...register("phoneNumber", isCreatingAccount === false ? {
+              required: "Field is Required", maxLength: {
+                value: 40,
+                message: "Field Limit length excced 40"
+              },
+              minLength: {
+                value: 4,
+                message: "Input length must be greater than 4",
+              }
+            } : {
               required: "Phone Number is required",
               pattern: {
                 value: /^\d{10}$/,
@@ -235,7 +245,7 @@ const AccountForm = () => {
               },
             })}
             id="phoneNumber"
-            type="number"
+            type={isCreatingAccount === true ? "number" : "text"}
           />
           {errors.phoneNumber && (
             <span
@@ -245,27 +255,9 @@ const AccountForm = () => {
             </span>
           )}
         </div>
-        <div className="flex-column">
+        <div className="flex-column password">
           <label htmlFor="password">Password</label>
-          <input
-            {...register("password", {
-              required: "Password is required",
-              pattern: {
-                value: /^[A-Z][^\s]{5,}$/,
-                message: "First Character must be a uppercase letter",
-              },
-              minLength: {
-                value: 6,
-                message: "Required minimum 6 digit number ",
-              },
-              maxLength: {
-                value: 30,
-                message: "Length cannot exceed 30 characters",
-              },
-            })}
-            id="password"
-            type="password"
-          />
+          <PasswordInput register={register} />
           {errors.password && (
             <span
               style={{ fontSize: ".7rem", fontWeight: "700", color: "red" }}

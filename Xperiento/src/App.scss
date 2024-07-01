@@ -97,6 +97,19 @@
             width: 100%;
             text-align: start;
 
+            &.password {
+                .input-area {
+                    position: relative;
+
+                    i {
+                        z-index: 5;
+                        position: absolute;
+                        right: 8px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                }
+            }
 
             input {
                 width: 100%;
@@ -111,7 +124,6 @@
 
                 &:focus-within {
                     border-color: var(--star-color);
-
                 }
             }
 

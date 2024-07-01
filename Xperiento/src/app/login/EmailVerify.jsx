@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { confirmVerifyEmailHandler } from "../../utils/api";
 
+// eslint-disable-next-line react/prop-types
 const VerifyEmail_Box = ({ getValues, setVerifyModelState, setIsVerified }) => {
   const [isLoading, setIsLoading] = useState(false);
 
