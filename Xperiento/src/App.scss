@@ -50,6 +50,13 @@
         }
     }
 
+    .NewPassword {
+        input {
+            border-radius: 0px;
+            color: var(--main-Bg) !important;
+            border-bottom: 1px solid var(--main-Bg) !important;
+        }
+    }
 
     h1 {
         font-size: 36px;

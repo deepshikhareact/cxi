@@ -1,4 +1,3 @@
-"use client";
 
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -6,6 +5,8 @@ import { login, signUp } from "@/utils/api";
 import { toast } from "react-toastify";
 import { UserContext } from "@/store/User_Context";
 import { Link } from "react-router-dom";
+import VerifyEmail_Box from "./EmailVerify";
+import { sendCodeToEmailHandler } from "@/utils/api";
 
 const AccountForm = () => {
   const { signInHandler } = useContext(UserContext);
@@ -13,7 +14,7 @@ const AccountForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
+    reset, getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -23,6 +24,8 @@ const AccountForm = () => {
   });
 
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
+  const [verifyModelState, setVerifyModelState] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const [businessType, setBusinessType] = useState(null);
 
   useEffect(() => {
@@ -37,17 +40,24 @@ const AccountForm = () => {
   };
 
   const onSubmit = async (data) => {
+
     if (!businessType && isCreatingAccount)
       return toast.warn("Please choose business type!!!");
     const { email, password, businessName, phoneNumber, firstName, lastName } =
       data;
     if (!password || !phoneNumber) return;
+    if (isCreatingAccount && !isVerified) {
+      return await sendCodeToEmail(email)
+    }
+
     setLoading(true);
 
     let res;
     if (!isCreatingAccount) {
       res = await login({ id: phoneNumber, password });
     } else if (isCreatingAccount) {
+      if (!isVerified) return toast.error("Email haven't verified yet")
+      if (isVerified !== email) return toast.error(`Verified Email (${isVerified}) not matching with this email`)
       res = await signUp({
         firstName,
         lastName,
@@ -73,6 +83,28 @@ const AccountForm = () => {
     }
     setLoading(false);
   };
+
+  async function sendCodeToEmail(email) {
+    toast.info(`Sending code to your ${email} email address.`)
+    if (email == "" || loading) return toast.error("Email is required");
+    try {
+      setLoading(true);
+      const response = await sendCodeToEmailHandler({ email });
+      if (response.data.success === true) {
+        toast.success(response.data.data);
+        setVerifyModelState(true)
+      } else {
+        toast.error(response.data.data);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+    setLoading(false);
+  }
+
+  if (verifyModelState) {
+    return <VerifyEmail_Box getValues={getValues} setVerifyModelState={setVerifyModelState} setIsVerified={setIsVerified} />
+  }
 
   return (
     <>
@@ -149,6 +181,7 @@ const AccountForm = () => {
                 })}
                 id="email"
                 type="email"
+                disabled={isVerified}
               />
               {errors.email && (
                 <span
@@ -362,7 +395,7 @@ const AccountForm = () => {
           </button>
         ) : (
           <button className="start" type="submit">
-            {isCreatingAccount ? "Create Account" : "Log In"}
+            {isCreatingAccount ? isVerified ? "Create Account" : "Verify Email" : "Log In"}
           </button>
         )}
         <button onClick={toggleForm} type="button" className="link">

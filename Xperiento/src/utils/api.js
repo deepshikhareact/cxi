@@ -110,8 +110,16 @@ export const createComment = async ({ id, text }) => {
   );
 };
 
-export const forgotPasswordEmailSend = async ({ email }) => {
-  return handleRequest(() => instance.post(`auth/forgotpassword`, { email }));
+export const forgotPasswordEmailSend = async (body) => {
+  return handleRequest(() => instance.post(`auth/forgotpassword`, body));
+};
+
+export const sendCodeToEmailHandler = async (body) => {
+  return handleRequest(() => instance.post(`auth/sendCodeToEmail`, body));
+};
+
+export const confirmVerifyEmailHandler = async (body) => {
+  return handleRequest(() => instance.post(`auth/confirmVerifyEmail`, body));
 };
 
 export const forgotPasswordEmailVerify = async (body) => {
